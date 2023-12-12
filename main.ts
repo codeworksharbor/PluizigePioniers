@@ -1,33 +1,26 @@
-import { Application, Sprite, Assets } from "pixi.js";
+import * as PIXI from 'pixi.js';
 
-// The application will create a renderer using WebGL, if possible,
-// with a fallback to a canvas render. It will also setup the ticker
-// and the root stage PIXI.Container
-const app = new Application();
+const app = new PIXI.Application<HTMLCanvasElement>({ background: '#1099bb', resizeTo: window });
 
-// The application will create a canvas element for you that you
-// can then insert into the DOM
 document.body.appendChild(app.view);
 
-// load the texture we need
-const texture = await Assets.load('assets/bunny.png');
+// create a new Sprite from an image path
+const bunny = PIXI.Sprite.from('https://pixijs.com/assets/bunny.png');
 
-// This creates a texture from a 'bunny.png' image
-const bunny = new Sprite(texture);
+// center the sprite's anchor point
+bunny.anchor.set(0.5);
 
-// Setup the position of the bunny
-bunny.x = app.renderer.width / 2;
-bunny.y = app.renderer.height / 2;
+// move the sprite to the center of the screen
+bunny.x = app.screen.width / 2;
+bunny.y = app.screen.height / 2;
 
-// Rotate around the center
-bunny.anchor.x = 0.5;
-bunny.anchor.y = 0.5;
-
-// Add the bunny to the scene we are building
 app.stage.addChild(bunny);
 
-// Listen for frame updates
-app.ticker.add(() => {
-    // each frame we spin the bunny around a bit
-    bunny.rotation += 0.01;
+// Listen for animate update
+app.ticker.add((delta) =>
+{
+    // just for fun, let's rotate mr rabbit a little
+    // delta is 1 if running at 100% performance
+    // creates frame-independent transformation
+    bunny.rotation += 0.1 * delta;
 });
