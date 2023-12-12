@@ -1,3 +1,35 @@
-[gd_scene format=3 uid="uid://bh216w2eqgrt0"]
+[gd_scene load_steps=7 format=3 uid="uid://bh216w2eqgrt0"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://bcd4ia1dn873w" path="res://Assets/BirdB_0000_Capa-1.png" id="1_7j3xb"]
+[ext_resource type="Texture2D" uid="uid://bnm2pt3f3372f" path="res://Assets/BirdB_0001_Capa-2.png" id="2_r1lhh"]
+[ext_resource type="Texture2D" uid="uid://bmm2cykdxxvs4" path="res://Assets/BirdB_0002_Capa-3.png" id="3_5k322"]
+[ext_resource type="Texture2D" uid="uid://b3vx1rbilsgwl" path="res://Assets/BirdB_0003_Capa-0.png" id="4_i70kf"]
+[ext_resource type="Script" path="res://Scripts/animate.gd" id="5_yd02b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q13yo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7j3xb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_r1lhh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5k322")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i70kf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(346, 307)
+scale = Vector2(0.508064, 0.508064)
+sprite_frames = SubResource("SpriteFrames_q13yo")
+script = ExtResource("5_yd02b")
