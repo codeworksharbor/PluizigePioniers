@@ -9,5 +9,10 @@
   },
   "scripts": {
     "build": "webpack --mode production"
-  }
+  },
+  "include": [
+	  "src/**/*.ts",
+	  "src/**/*.tsx",
+	  "assets/**/*.jpg"
+  ]
 }
