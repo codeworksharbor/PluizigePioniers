@@ -7,7 +7,13 @@ export type Climate = {
 
 export type Bird = {
 	name: string,
+	description: string,
 	climate: Climate,
 	prefFood: Array<Food>,
 	image: `assets/${string}`,
+};
+
+export type CollectionBook = {
+	progress: number,
+	birds: Array<Bird>,
 };
