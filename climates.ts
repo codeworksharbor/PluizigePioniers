@@ -63,7 +63,6 @@ function Climates() {
     document.body.appendChild(app.view);
 
     renderImages(app);
-    // render this in the middle of the screen in a div
 }
 
 export default Climates;
