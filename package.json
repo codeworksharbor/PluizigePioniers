@@ -9,11 +9,11 @@
     "pixi.js": "^7.3.2"
   },
   "scripts": {
-    "build": "yarn tsc && webpack --mode production"
+    "build": "webpack --mode production"
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "assets/**/*.jpg"
+	  "src/**/*.ts",
+	  "src/**/*.tsx",
+	  "assets/**/*.jpg"
   ]
 }
