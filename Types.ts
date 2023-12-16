@@ -1,7 +1,9 @@
+export type ClimateName = 'tundra' | 'desert' | 'hills' | 'jungle' | 'arctic';
+
 export type Food = 'berry' | 'fish' | 'meat' | 'insect' | null;
 
 export type Climate = {
-	name: 'tundra' | 'desert' | 'hills' | 'jungle' | 'arctic',
+	name: ClimateName,
 	food: Array<Food>,
 };
 
