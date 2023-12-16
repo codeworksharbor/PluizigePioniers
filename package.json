@@ -5,6 +5,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "file-loader": "^6.2.0",
     "pixi.js": "^7.3.2"
   },
   "scripts": {
