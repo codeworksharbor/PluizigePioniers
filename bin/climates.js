@@ -32,6 +32,28 @@ const green_hills_jpg_1 = __importDefault(require("../assets/green_hills.jpg"));
 const rainforest_jpg_1 = __importDefault(require("../assets/rainforest.jpg"));
 const winter_jpg_1 = __importDefault(require("../assets/winter.jpg"));
 const taiga_jpg_1 = __importDefault(require("../assets/taiga.jpg"));
+const climates = [
+    {
+        name: 'tundra',
+        food: ['berry', 'fish', 'meat'],
+    },
+    {
+        name: 'desert',
+        food: ['meat', 'insect'],
+    },
+    {
+        name: 'hills',
+        food: ['berry', 'fish', 'meat', 'insect'],
+    },
+    {
+        name: 'jungle',
+        food: ['berry', 'fish', 'meat', 'insect'],
+    },
+    {
+        name: 'arctic',
+        food: ['fish'],
+    },
+];
 // TODO: Create a function that gets the smallest image width and height
 // and makes all other images the same size
 function renderImages(app) {
@@ -48,6 +70,13 @@ function renderImages(app) {
     wintertree.height = 150;
     wintertree.width = 200;
     container.addChild(wintertree);
+    // assign taiga to wintertree
+    wintertree.interactive = true;
+    wintertree.accessibleType = climates[0].name;
+    wintertree.accessibleTitle = climates[0].name;
+    wintertree.onclick = () => {
+        console.log(wintertree.accessibleTitle);
+    };
     const hills = PIXI.Sprite.from(green_hills_jpg_1.default);
     hills.anchor.set(0.5);
     hills.x = 0;
@@ -55,6 +84,12 @@ function renderImages(app) {
     hills.height = 150;
     hills.width = 200;
     container.addChild(hills);
+    hills.interactive = true;
+    hills.accessibleType = climates[2].name;
+    hills.accessibleTitle = climates[2].name;
+    hills.onclick = () => {
+        console.log(hills.accessibleTitle);
+    };
     const desert = PIXI.Sprite.from(desert_landscape_jpg_1.default);
     desert.anchor.set(0.5);
     desert.x = 0;
@@ -62,6 +97,12 @@ function renderImages(app) {
     desert.height = 150;
     desert.width = 200;
     container.addChild(desert);
+    desert.interactive = true;
+    desert.accessibleType = climates[1].name;
+    desert.accessibleTitle = climates[1].name;
+    desert.onclick = () => {
+        console.log(desert.accessibleTitle);
+    };
     const rain = PIXI.Sprite.from(rainforest_jpg_1.default);
     rain.anchor.set(0.5);
     rain.x = 0;
@@ -69,6 +110,12 @@ function renderImages(app) {
     rain.height = 150;
     rain.width = 200;
     container.addChild(rain);
+    rain.interactive = true;
+    rain.accessibleType = climates[3].name;
+    rain.accessibleTitle = climates[3].name;
+    rain.onclick = () => {
+        console.log(rain.accessibleTitle);
+    };
     const southpole = PIXI.Sprite.from(winter_jpg_1.default);
     southpole.anchor.set(0.5);
     southpole.x = 0;
@@ -76,12 +123,17 @@ function renderImages(app) {
     southpole.height = 150;
     southpole.width = 200;
     container.addChild(southpole);
+    southpole.interactive = true;
+    southpole.accessibleType = climates[4].name;
+    southpole.accessibleTitle = climates[4].name;
+    southpole.onclick = () => {
+        console.log(southpole.accessibleTitle);
+    };
 }
 function Climates() {
     const app = new PIXI.Application({ background: 'white', resizeTo: window });
     document.body.appendChild(app.view);
     renderImages(app);
-    // render this in the middle of the screen in a div
 }
 exports.default = Climates;
 //# sourceMappingURL=climates.js.map
