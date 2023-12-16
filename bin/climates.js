@@ -32,27 +32,13 @@ const green_hills_jpg_1 = __importDefault(require("../assets/green_hills.jpg"));
 const rainforest_jpg_1 = __importDefault(require("../assets/rainforest.jpg"));
 const winter_jpg_1 = __importDefault(require("../assets/winter.jpg"));
 const taiga_jpg_1 = __importDefault(require("../assets/taiga.jpg"));
+const climate_1 = require("./climate");
 const climates = [
-    {
-        name: 'tundra',
-        food: ['berry', 'fish', 'meat'],
-    },
-    {
-        name: 'desert',
-        food: ['meat', 'insect'],
-    },
-    {
-        name: 'hills',
-        food: ['berry', 'fish', 'meat', 'insect'],
-    },
-    {
-        name: 'jungle',
-        food: ['berry', 'fish', 'meat', 'insect'],
-    },
-    {
-        name: 'arctic',
-        food: ['fish'],
-    },
+    (0, climate_1.CreateBasicClimate)('tundra', ['berry', 'fish', 'meat']),
+    (0, climate_1.CreateBasicClimate)('desert', ['insect', 'meat']),
+    (0, climate_1.CreateBasicClimate)('hills', ['berry', 'fish', 'meat', 'insect']),
+    (0, climate_1.CreateBasicClimate)('jungle', ['berry', 'fish', 'meat', 'insect']),
+    (0, climate_1.CreateBasicClimate)('arctic', ['fish']),
 ];
 // TODO: Create a function that gets the smallest image width and height
 // and makes all other images the same size

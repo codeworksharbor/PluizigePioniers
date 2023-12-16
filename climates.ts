@@ -4,30 +4,15 @@ import green_hills from '../assets/green_hills.jpg';
 import rainforest from '../assets/rainforest.jpg';
 import winter from '../assets/winter.jpg';
 import taiga from '../assets/taiga.jpg';
-import { Climate } from './Types';
+import { CreateBasicClimate } from './climate';
 
-const climates: Array<Climate> = [
-    {
-        name: 'tundra',
-        food: ['berry', 'fish', 'meat'],
-    },
-    {
-        name: 'desert',
-        food: [ 'meat', 'insect'],
-    },
-    {
-        name: 'hills',
-        food: ['berry', 'fish', 'meat', 'insect'],
-    },
-    {
-        name: 'jungle',
-        food: ['berry', 'fish', 'meat', 'insect'],
-    },
-    {
-        name: 'arctic',
-        food: ['fish'],
-    },
-];
+const climates = [
+    CreateBasicClimate('tundra', ['berry', 'fish', 'meat']),
+    CreateBasicClimate('desert', ['insect', 'meat']),
+    CreateBasicClimate('hills', ['berry', 'fish', 'meat', 'insect']),
+    CreateBasicClimate('jungle', ['berry', 'fish', 'meat', 'insect']),
+    CreateBasicClimate('arctic', ['fish']),
+]; 
 
 // TODO: Create a function that gets the smallest image width and height
 // and makes all other images the same size
@@ -45,7 +30,8 @@ function renderImages(app: PIXI.Application) {
     wintertree.y = 0;
     wintertree.height = 150;
     wintertree.width = 200;
-    container.addChild(wintertree);
+    container.addChild(wintertree);   
+
 
     // assign taiga to wintertree
     wintertree.interactive = true;
