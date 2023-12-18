@@ -37,6 +37,17 @@ const birds = [
     (0, Bird_1.createBasicBird)("haan", "De baas van alle kippen, dit is een mannetjes vogel die niet kan vliegen en ook geen eieren legt.", (0, Climate_1.SearchClimate)("hills", climates_1.climates), ['insect', 'berry', 'seed']),
     (0, Bird_1.createBasicBird)("havik", "Krachtige roofvogel die niet bang is om andere vogels aan te vallen.", (0, Climate_1.SearchClimate)("hills", climates_1.climates), ['meat', 'insect']),
     (0, Bird_1.createBasicBird)("vampiervogel", "Als er geen ander voedsel meer is gaat deze vogel opzoek naar andere vogels om hun bloed te zuigen.", (0, Climate_1.SearchClimate)("desert", climates_1.climates), []),
+    (0, Bird_1.createBasicBird)("umbrellabird", "Vogels die een beetje bang zijn voor water, deze vogels leven ook daarom in het diepe jungle", (0, Climate_1.SearchClimate)("jungle", climates_1.climates), ['berry', 'insect', 'meat']),
+    (0, Bird_1.createBasicBird)("paradijsvogel", "Prachtige vogels met de mooiste kleuren van het hele paradijs", (0, Climate_1.SearchClimate)("jungle", climates_1.climates), ['berry', 'insect']),
+    // lol die naam
+    (0, Bird_1.createBasicBird)("vuurkeelglansstaartkolibrie", "Een magische fladderaar met een glinsterende rode keel en een prachtige staart, net als een kleurrijke elfenvogel", (0, Climate_1.SearchClimate)("jungle", climates_1.climates), ['berry', 'insect']),
+    (0, Bird_1.createBasicBird)("harpij", "Een stoere koning van het regenwoud, met supersterke klauwen en een stoere uitstraling, net als een machtige bosbeschermer", (0, Climate_1.SearchClimate)("jungle", climates_1.climates), ['meat', 'insect']),
+    (0, Bird_1.createBasicBird)("sneeuwgors", "Met zijn winterse witte verenkleed en subtiele strepen, lijkt als een levend sneeuwkristal te dansen over de bevroren vlaktes van de tundra.", (0, Climate_1.SearchClimate)("tundra", climates_1.climates), ['berry', 'seed']),
+    (0, Bird_1.createBasicBird)("ruigpootbuizerd", "Met zijn donkere veren en pluizige poten, zweeft majestueus boven de uitgestrekte toendra, speurend naar prooi in de ijzige lucht van het noordelijke klimaat.", (0, Climate_1.SearchClimate)("tundra", climates_1.climates), ['meat', 'fish']),
+    (0, Bird_1.createBasicBird)("taigagaai", "Als een kleine, winterse vriend met zijn witte veren en strepen, die dartelt en danst als een vrolijke sneeuwvogel op de ijzige tundra.", (0, Climate_1.SearchClimate)("tundra", climates_1.climates), ['berry', 'insect', 'seed']),
+    (0, Bird_1.createBasicBird)("zuidpoolkip", "Als een grappige, pluizige vriend met een dikke vacht die lijkt op een zachte sneeuwbal, en hij waggelt vrolijk rond op de ijzige vlaktes van de Zuidpool, alsof hij een winterse dansfeestje viert!", (0, Climate_1.SearchClimate)("arctic", climates_1.climates), ['fish', 'insect']),
+    (0, Bird_1.createBasicBird)("albatros", "Een supersterke vogel met enorme vleugels die lijken op regenbogen, en hij zweeft hoog in de lucht alsof hij meedoet aan een magische vliegwedstrijd boven de oceaan!", (0, Climate_1.SearchClimate)("arctic", climates_1.climates), ['fish']),
+    (0, Bird_1.createBasicBird)("skua", "Een stoere zuidpoolvogel met bruine veren die als een slimme piraat door de lucht scheert, op zoek naar lekkere visjes om te eten en avonturen te beleven in de koude zeebries!", (0, Climate_1.SearchClimate)("arctic", climates_1.climates), ['fish']),
 ];
 (0, climates_1.default)();
 //# sourceMappingURL=main.js.map

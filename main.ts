@@ -23,6 +23,27 @@ const birds = [
 					SearchClimate("hills", climates), ['meat', 'insect']),
 	createBasicBird("vampiervogel", "Als er geen ander voedsel meer is gaat deze vogel opzoek naar andere vogels om hun bloed te zuigen.",
 					SearchClimate("desert", climates), []),
+	createBasicBird("umbrellabird", "Vogels die een beetje bang zijn voor water, deze vogels leven ook daarom in het diepe jungle",
+					SearchClimate("jungle", climates), ['berry', 'insect', 'meat']),
+	createBasicBird("paradijsvogel", "Prachtige vogels met de mooiste kleuren van het hele paradijs",
+					SearchClimate("jungle", climates), ['berry', 'insect']),
+	// lol die naam
+	createBasicBird("vuurkeelglansstaartkolibrie", "Een magische fladderaar met een glinsterende rode keel en een prachtige staart, net als een kleurrijke elfenvogel",
+					SearchClimate("jungle", climates), ['berry', 'insect']),
+	createBasicBird("harpij", "Een stoere koning van het regenwoud, met supersterke klauwen en een stoere uitstraling, net als een machtige bosbeschermer",
+					SearchClimate("jungle", climates), ['meat', 'insect']),
+	createBasicBird("sneeuwgors", "Met zijn winterse witte verenkleed en subtiele strepen, lijkt als een levend sneeuwkristal te dansen over de bevroren vlaktes van de tundra.",
+					SearchClimate("tundra", climates), ['berry', 'seed']),
+	createBasicBird("ruigpootbuizerd", "Met zijn donkere veren en pluizige poten, zweeft majestueus boven de uitgestrekte toendra, speurend naar prooi in de ijzige lucht van het noordelijke klimaat.",
+					SearchClimate("tundra", climates), ['meat', 'fish']),
+	createBasicBird("taigagaai", "Als een kleine, winterse vriend met zijn witte veren en strepen, die dartelt en danst als een vrolijke sneeuwvogel op de ijzige tundra.",
+					SearchClimate("tundra", climates), ['berry', 'insect', 'seed']),
+	createBasicBird("zuidpoolkip", "Als een grappige, pluizige vriend met een dikke vacht die lijkt op een zachte sneeuwbal, en hij waggelt vrolijk rond op de ijzige vlaktes van de Zuidpool, alsof hij een winterse dansfeestje viert!",
+					SearchClimate("arctic", climates), ['fish', 'insect']),
+	createBasicBird("albatros", "Een supersterke vogel met enorme vleugels die lijken op regenbogen, en hij zweeft hoog in de lucht alsof hij meedoet aan een magische vliegwedstrijd boven de oceaan!",
+					SearchClimate("arctic", climates), ['fish']),
+	createBasicBird("skua", "Een stoere zuidpoolvogel met bruine veren die als een slimme piraat door de lucht scheert, op zoek naar lekkere visjes om te eten en avonturen te beleven in de koude zeebries!",
+					SearchClimate("arctic", climates), ['fish']),
 ];
 
 RenderClimates();
