@@ -24,7 +24,7 @@ const createBasicBird = (name_, description_, climate_, food_) => {
 exports.createBasicBird = createBasicBird;
 const returnBird = (bird_, birds_, climate_, availableFood_) => {
     if (bird_.name !== 'vink') {
-        return undefined;
+        return null;
     }
     let birdsInClimate = birds_.filter((bird) => bird.climate === climate_);
     let birdsInClimateWithFood = birdsInClimate.filter((bird) => bird.prefFood.some((food) => availableFood_.includes(food)));

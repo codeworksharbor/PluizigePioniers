@@ -21,9 +21,9 @@ export const createBasicBird = (name_: string, description_: string, climate_: C
 	return newBird;
 };
 
-export const returnBird = (bird_: Bird, birds_: Array<Bird>, climate_: Climate, availableFood_: Array<Food>): Bird | undefined => {
+export const returnBird = (bird_: Bird, birds_: Array<Bird>, climate_: Climate, availableFood_: Array<Food>): Bird | null => {
 	if (bird_.name !== 'vink') {
-		return undefined;
+		return null;
 	}
 	
 	let birdsInClimate = birds_.filter((bird: Bird): boolean => bird.climate === climate_);
