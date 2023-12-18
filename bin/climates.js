@@ -26,19 +26,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.climates = void 0;
 const PIXI = __importStar(require("pixi.js"));
 const desert_landscape_jpg_1 = __importDefault(require("../assets/desert_landscape.jpg"));
 const green_hills_jpg_1 = __importDefault(require("../assets/green_hills.jpg"));
 const rainforest_jpg_1 = __importDefault(require("../assets/rainforest.jpg"));
 const winter_jpg_1 = __importDefault(require("../assets/winter.jpg"));
 const taiga_jpg_1 = __importDefault(require("../assets/taiga.jpg"));
-const climate_1 = require("./climate");
-const climates = [
-    (0, climate_1.CreateBasicClimate)('tundra', ['berry', 'fish', 'meat']),
-    (0, climate_1.CreateBasicClimate)('desert', ['insect', 'meat']),
-    (0, climate_1.CreateBasicClimate)('hills', ['berry', 'fish', 'meat', 'insect']),
-    (0, climate_1.CreateBasicClimate)('jungle', ['berry', 'fish', 'meat', 'insect']),
-    (0, climate_1.CreateBasicClimate)('arctic', ['fish']),
+const Climate_1 = require("./Climate");
+exports.climates = [
+    (0, Climate_1.CreateBasicClimate)('tundra', ['berry', 'fish', 'meat', 'seed']),
+    (0, Climate_1.CreateBasicClimate)('desert', ['insect', 'meat']),
+    (0, Climate_1.CreateBasicClimate)('hills', ['berry', 'fish', 'meat', 'insect', 'seed']),
+    (0, Climate_1.CreateBasicClimate)('jungle', ['berry', 'fish', 'meat', 'insect']),
+    (0, Climate_1.CreateBasicClimate)('arctic', ['fish']),
 ];
 // TODO: Create a function that gets the smallest image width and height
 // and makes all other images the same size
@@ -58,8 +59,8 @@ function renderImages(app) {
     container.addChild(wintertree);
     // assign taiga to wintertree
     wintertree.interactive = true;
-    wintertree.accessibleType = climates[0].name;
-    wintertree.accessibleTitle = climates[0].name;
+    wintertree.accessibleType = exports.climates[0].name;
+    wintertree.accessibleTitle = exports.climates[0].name;
     wintertree.onclick = () => {
         console.log(wintertree.accessibleTitle);
     };
@@ -71,8 +72,8 @@ function renderImages(app) {
     hills.width = 200;
     container.addChild(hills);
     hills.interactive = true;
-    hills.accessibleType = climates[2].name;
-    hills.accessibleTitle = climates[2].name;
+    hills.accessibleType = exports.climates[2].name;
+    hills.accessibleTitle = exports.climates[2].name;
     hills.onclick = () => {
         console.log(hills.accessibleTitle);
     };
@@ -84,8 +85,8 @@ function renderImages(app) {
     desert.width = 200;
     container.addChild(desert);
     desert.interactive = true;
-    desert.accessibleType = climates[1].name;
-    desert.accessibleTitle = climates[1].name;
+    desert.accessibleType = exports.climates[1].name;
+    desert.accessibleTitle = exports.climates[1].name;
     desert.onclick = () => {
         console.log(desert.accessibleTitle);
     };
@@ -97,8 +98,8 @@ function renderImages(app) {
     rain.width = 200;
     container.addChild(rain);
     rain.interactive = true;
-    rain.accessibleType = climates[3].name;
-    rain.accessibleTitle = climates[3].name;
+    rain.accessibleType = exports.climates[3].name;
+    rain.accessibleTitle = exports.climates[3].name;
     rain.onclick = () => {
         console.log(rain.accessibleTitle);
     };
@@ -110,16 +111,16 @@ function renderImages(app) {
     southpole.width = 200;
     container.addChild(southpole);
     southpole.interactive = true;
-    southpole.accessibleType = climates[4].name;
-    southpole.accessibleTitle = climates[4].name;
+    southpole.accessibleType = exports.climates[4].name;
+    southpole.accessibleTitle = exports.climates[4].name;
     southpole.onclick = () => {
         console.log(southpole.accessibleTitle);
     };
 }
-function Climates() {
+function RenderClimates() {
     const app = new PIXI.Application({ background: 'white', resizeTo: window });
     document.body.appendChild(app.view);
     renderImages(app);
 }
-exports.default = Climates;
+exports.default = RenderClimates;
 //# sourceMappingURL=climates.js.map

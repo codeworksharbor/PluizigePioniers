@@ -9,3 +9,6 @@ export const CreateBasicClimate = (name_: ClimateName, food_: Array<Food>): Clim
     }
     return climate;
 }
+
+export const SearchClimate = (name: ClimateName, climates: Array<Climate>): Climate =>
+	climates.find((climate: Climate): boolean => climate.name === name)!;
