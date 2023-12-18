@@ -4,12 +4,12 @@ import green_hills from '../assets/green_hills.jpg';
 import rainforest from '../assets/rainforest.jpg';
 import winter from '../assets/winter.jpg';
 import taiga from '../assets/taiga.jpg';
-import { CreateBasicClimate } from './climate';
+import { CreateBasicClimate } from './Climate';
 
-const climates = [
-    CreateBasicClimate('tundra', ['berry', 'fish', 'meat']),
+export const climates = [
+    CreateBasicClimate('tundra', ['berry', 'fish', 'meat', 'seed']),
     CreateBasicClimate('desert', ['insect', 'meat']),
-    CreateBasicClimate('hills', ['berry', 'fish', 'meat', 'insect']),
+    CreateBasicClimate('hills', ['berry', 'fish', 'meat', 'insect', 'seed']),
     CreateBasicClimate('jungle', ['berry', 'fish', 'meat', 'insect']),
     CreateBasicClimate('arctic', ['fish']),
 ]; 
@@ -105,11 +105,11 @@ function renderImages(app: PIXI.Application) {
 }
 
 
-function Climates() {
+function RenderClimates() {
     const app = new PIXI.Application<HTMLCanvasElement>({ background: 'white', resizeTo: window });
     document.body.appendChild(app.view);
 
     renderImages(app);
 }
 
-export default Climates;
+export default RenderClimates;

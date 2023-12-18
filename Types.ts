@@ -1,6 +1,6 @@
 export type ClimateName = 'tundra' | 'desert' | 'hills' | 'jungle' | 'arctic';
 
-export type Food = 'berry' | 'fish' | 'meat' | 'insect' | null;
+export type Food = 'berry' | 'fish' | 'meat' | 'insect' | 'seed' | null;
 
 export type Climate = {
 	name: ClimateName,
