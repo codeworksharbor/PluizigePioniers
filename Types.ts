@@ -12,7 +12,7 @@ export type Bird = {
 	description: string,
 	climate: Climate,
 	prefFood: Array<Food>,
-	image: `assets/${string}`,
+	image: `assets/birds/${string}`,
 };
 
 export type CollectionBook = {
