@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createBasicBird = void 0;
+exports.returnBird = exports.createBasicBird = void 0;
 /**
  * Functie om een vogel te maken, dit is met de type Bird uit Types.ts
  *
@@ -22,4 +22,14 @@ const createBasicBird = (name_, description_, climate_, food_) => {
     return newBird;
 };
 exports.createBasicBird = createBasicBird;
+const returnBird = (bird_, birds_, climate_, availableFood_) => {
+    if (bird_.name !== 'vink') {
+        return undefined;
+    }
+    let birdsInClimate = birds_.filter((bird) => bird.climate === climate_);
+    let birdsInClimateWithFood = birdsInClimate.filter((bird) => bird.prefFood.some((food) => availableFood_.includes(food)));
+    let bird = birdsInClimateWithFood[Math.floor(Math.random() * birdsInClimateWithFood.length)];
+    return bird;
+};
+exports.returnBird = returnBird;
 //# sourceMappingURL=Bird.js.map

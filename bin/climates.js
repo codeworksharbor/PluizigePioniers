@@ -58,7 +58,7 @@ function renderImages(app) {
     wintertree.width = 200;
     container.addChild(wintertree);
     // assign taiga to wintertree
-    wintertree.interactive = true;
+    wintertree.eventMode = 'dynamic';
     wintertree.accessibleType = exports.climates[0].name;
     wintertree.accessibleTitle = exports.climates[0].name;
     wintertree.onclick = () => {
@@ -71,7 +71,7 @@ function renderImages(app) {
     hills.height = 150;
     hills.width = 200;
     container.addChild(hills);
-    hills.interactive = true;
+    hills.eventMode = 'dynamic';
     hills.accessibleType = exports.climates[2].name;
     hills.accessibleTitle = exports.climates[2].name;
     hills.onclick = () => {
@@ -84,7 +84,7 @@ function renderImages(app) {
     desert.height = 150;
     desert.width = 200;
     container.addChild(desert);
-    desert.interactive = true;
+    desert.eventMode = 'dynamic';
     desert.accessibleType = exports.climates[1].name;
     desert.accessibleTitle = exports.climates[1].name;
     desert.onclick = () => {
@@ -97,7 +97,7 @@ function renderImages(app) {
     rain.height = 150;
     rain.width = 200;
     container.addChild(rain);
-    rain.interactive = true;
+    rain.eventMode = 'dynamic';
     rain.accessibleType = exports.climates[3].name;
     rain.accessibleTitle = exports.climates[3].name;
     rain.onclick = () => {
@@ -110,7 +110,7 @@ function renderImages(app) {
     southpole.height = 150;
     southpole.width = 200;
     container.addChild(southpole);
-    southpole.interactive = true;
+    southpole.eventMode = 'dynamic';
     southpole.accessibleType = exports.climates[4].name;
     southpole.accessibleTitle = exports.climates[4].name;
     southpole.onclick = () => {
