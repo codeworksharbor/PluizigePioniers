@@ -5,6 +5,7 @@ import rainforest from '../assets/rainforest.jpg';
 import winter from '../assets/winter.jpg';
 import taiga from '../assets/taiga.jpg';
 import { CreateBasicClimate } from './Climate';
+import { Food } from './Types';
 
 export const climates = [
     CreateBasicClimate('tundra', ['berry', 'fish', 'meat', 'seed']),
@@ -12,7 +13,20 @@ export const climates = [
     CreateBasicClimate('hills', ['berry', 'fish', 'meat', 'insect', 'seed']),
     CreateBasicClimate('jungle', ['berry', 'fish', 'meat', 'insect']),
     CreateBasicClimate('arctic', ['fish']),
-]; 
+];
+
+export function removeResource(climatename_: string, food_: Food): boolean {
+    const climate = climates.find(climate => climate.name === climatename_);
+    if (climate) {
+        const index = climate.food.indexOf(food_);
+        if (index > -1) {
+            climate.food.splice(index, 1);
+            return true;
+        }
+        return false;
+    }
+    return false;
+}
 
 // TODO: Create a function that gets the smallest image width and height
 // and makes all other images the same size

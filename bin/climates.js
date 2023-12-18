@@ -26,7 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.climates = void 0;
+exports.removeResource = exports.climates = void 0;
 const PIXI = __importStar(require("pixi.js"));
 const desert_landscape_jpg_1 = __importDefault(require("../assets/desert_landscape.jpg"));
 const green_hills_jpg_1 = __importDefault(require("../assets/green_hills.jpg"));
@@ -41,6 +41,19 @@ exports.climates = [
     (0, Climate_1.CreateBasicClimate)('jungle', ['berry', 'fish', 'meat', 'insect']),
     (0, Climate_1.CreateBasicClimate)('arctic', ['fish']),
 ];
+function removeResource(climatename_, food_) {
+    const climate = exports.climates.find(climate => climate.name === climatename_);
+    if (climate) {
+        const index = climate.food.indexOf(food_);
+        if (index > -1) {
+            climate.food.splice(index, 1);
+            return true;
+        }
+        return false;
+    }
+    return false;
+}
+exports.removeResource = removeResource;
 // TODO: Create a function that gets the smallest image width and height
 // and makes all other images the same size
 function renderImages(app) {
