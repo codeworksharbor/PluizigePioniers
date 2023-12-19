@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createBasicBird = void 0;
+exports.findBird = exports.createBasicBird = void 0;
 /**
  * Functie om een vogel te maken, dit is met de type Bird uit Types.ts
  *
@@ -17,9 +17,19 @@ const createBasicBird = (name_, description_, climate_, food_) => {
         description: description_,
         climate: climate_,
         prefFood: food_,
-        image: `assets/${name_}.png` // de image wordt op basis van de naam gekozen, is makkelijker en dynamisch
+        image: `assets/birds/${name_}.png` // de image wordt op basis van de naam gekozen, is makkelijker en dynamisch
     };
     return newBird;
 };
 exports.createBasicBird = createBasicBird;
+/**
+ * Zoek een vogel in de vogels lijst
+ *
+ * @param {string} name_ - de naam van de vogel
+ * @param {Array<Bird>} birds - de vogels waar je in wilt zoeken
+ *
+ * @returns {Bird} - de vogel die je wilde zoeken
+ */
+const findBird = (name_, birds) => birds.find((bird) => bird.name === name_);
+exports.findBird = findBird;
 //# sourceMappingURL=Bird.js.map
