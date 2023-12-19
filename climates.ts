@@ -6,6 +6,8 @@ import winter from '../assets/winter.jpg';
 import taiga from '../assets/taiga.jpg';
 import { CreateBasicClimate } from './Climate';
 import { Food } from './Types';
+import { SearchClimate } from './Climate';
+import { ClimateName } from './Types';
 
 export const climates = [
     CreateBasicClimate('tundra', ['berry', 'fish', 'meat', 'seed']),
@@ -15,8 +17,8 @@ export const climates = [
     CreateBasicClimate('arctic', ['fish']),
 ];
 
-export function removeResource(climatename_: string, food_: Food): boolean {
-    const climate = climates.find(climate => climate.name === climatename_);
+export function removeResource(climatename_: ClimateName, food_: Food): boolean {
+    const climate = SearchClimate(climatename_, climates);
     if (climate) {
         const index = climate.food.indexOf(food_);
         if (index > -1) {

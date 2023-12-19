@@ -20,14 +20,3 @@ export const createBasicBird = (name_: string, description_: string, climate_: C
 	};
 	return newBird;
 };
-
-export const returnBird = (bird_: Bird, birds_: Array<Bird>, climate_: Climate, availableFood_: Array<Food>): Bird | null => {
-	if (bird_.name !== 'vink') {
-		return null;
-	}
-	
-	let birdsInClimate = birds_.filter((bird: Bird): boolean => bird.climate === climate_);
-	let birdsInClimateWithFood = birdsInClimate.filter((bird: Bird): boolean => bird.prefFood.some((food: Food): boolean => availableFood_.includes(food)));
-	let bird = birdsInClimateWithFood[Math.floor(Math.random() * birdsInClimateWithFood.length)];
-	return bird;
-}
