@@ -34,6 +34,8 @@ const rainforest_jpg_1 = __importDefault(require("../assets/rainforest.jpg"));
 const winter_jpg_1 = __importDefault(require("../assets/winter.jpg"));
 const taiga_jpg_1 = __importDefault(require("../assets/taiga.jpg"));
 const Climate_1 = require("./Climate");
+const Bird_1 = require("./Bird");
+const main_1 = require("./main");
 const Climate_2 = require("./Climate");
 exports.climates = [
     (0, Climate_1.CreateBasicClimate)('tundra', {
@@ -88,10 +90,11 @@ exports.removeResource = removeResource;
 // TODO: Create a function that gets the smallest image width and height
 // and makes all other images the same size
 function renderImages(app) {
+    const firstBird = (0, Bird_1.findBird)("vink", main_1.birds);
     const container = new PIXI.Container();
     container.x = app.screen.width / 2;
     container.y = 100;
-    container.height = 150 * 5;
+    container.height = 150 * 6;
     container.width = 200;
     app.stage.addChild(container);
     const wintertree = PIXI.Sprite.from(taiga_jpg_1.default);
@@ -160,6 +163,25 @@ function renderImages(app) {
     southpole.onclick = () => {
         console.log(southpole.accessibleTitle);
     };
+    const birdBar = new PIXI.Graphics();
+    birdBar.x = -100;
+    birdBar.y = 650;
+    birdBar.beginFill(0x7B481C);
+    birdBar.lineStyle({ color: 0xffffff });
+    birdBar.drawRect(0, 0, 200, 150);
+    birdBar.endFill();
+    birdBar.zIndex = -1;
+    container.addChild(birdBar);
+    const firstBirdSprite = PIXI.Sprite.from(firstBird.image);
+    firstBirdSprite.eventMode = "static";
+    firstBirdSprite.cursor = "pointer";
+    firstBirdSprite.anchor.set(0.5);
+    firstBirdSprite.x = 0;
+    firstBirdSprite.y = southpole.y + 128;
+    firstBirdSprite.height = 128;
+    firstBirdSprite.width = 128;
+    firstBirdSprite.zIndex = 10000;
+    container.addChild(firstBirdSprite);
 }
 function RenderClimates() {
     const app = new PIXI.Application({ background: 'white', resizeTo: window });

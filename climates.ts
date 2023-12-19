@@ -5,13 +5,10 @@ import rainforest from '../assets/rainforest.jpg';
 import winter from '../assets/winter.jpg';
 import taiga from '../assets/taiga.jpg';
 import { CreateBasicClimate } from './Climate';
-import { Food } from './Types';
-import { SearchClimate } from './Climate';
-import { ClimateName } from './Types';
-import { DictionaryFood } from './Types';
-import { Bird } from './Types';
+import { findBird } from './Bird';
 import { birds } from './main';
-import { Climate } from './Types';
+import { Food, Bird, ClimateName, DictionaryFood, Climate } from './Types';
+import { SearchClimate } from './Climate';
 
 export const climates = [
     CreateBasicClimate('tundra', {
@@ -67,10 +64,11 @@ export function removeResource(climatename_: ClimateName, bird_: Bird): Climate 
 // TODO: Create a function that gets the smallest image width and height
 // and makes all other images the same size
 function renderImages(app: PIXI.Application) {
+	const firstBird: Bird = findBird("vink", birds);
     const container = new PIXI.Container();
     container.x = app.screen.width / 2;
     container.y = 100;
-    container.height = 150 * 5;
+    container.height = 150 * 6;
     container.width = 200;
     app.stage.addChild(container);
 
@@ -151,7 +149,26 @@ function renderImages(app: PIXI.Application) {
         console.log(southpole.accessibleTitle);
     }
 
+	const birdBar = new PIXI.Graphics();
+	birdBar.x = -100;
+	birdBar.y = 650;
+	birdBar.beginFill(0x7B481C);
+	birdBar.lineStyle({color: 0xffffff});
+	birdBar.drawRect(0, 0, 200, 150);
+	birdBar.endFill();
+	birdBar.zIndex = -1;
+	container.addChild(birdBar);
 
+	const firstBirdSprite = PIXI.Sprite.from(firstBird.image);
+	firstBirdSprite.eventMode = "static";
+	firstBirdSprite.cursor = "pointer";
+    firstBirdSprite.anchor.set(0.5);
+    firstBirdSprite.x = 0;
+    firstBirdSprite.y = southpole.y + 128;
+    firstBirdSprite.height = 128;
+    firstBirdSprite.width = 128;
+	firstBirdSprite.zIndex = 10000;
+	container.addChild(firstBirdSprite);
 }
 
 

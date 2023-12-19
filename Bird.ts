@@ -20,3 +20,13 @@ export const createBasicBird = (name_: string, description_: string, climate_: C
 	};
 	return newBird;
 };
+
+/**
+ * Zoek een vogel in de vogels lijst 
+ *
+ * @param {string} name_ - de naam van de vogel
+ * @param {Array<Bird>} birds - de vogels waar je in wilt zoeken
+ *
+ * @returns {Bird} - de vogel die je wilde zoeken
+ */
+export const findBird = (name_: string, birds: Array<Bird>): Bird => birds.find((bird: Bird): boolean => bird.name === name_)!;
