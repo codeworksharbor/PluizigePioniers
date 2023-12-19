@@ -8,26 +8,58 @@ import { CreateBasicClimate } from './Climate';
 import { Food } from './Types';
 import { SearchClimate } from './Climate';
 import { ClimateName } from './Types';
+import { DictionaryFood } from './Types';
+import { Bird } from './Types';
+import { birds } from './main';
+import { Climate } from './Types';
 
 export const climates = [
-    CreateBasicClimate('tundra', ['berry', 'fish', 'meat', 'seed']),
-    CreateBasicClimate('desert', ['insect', 'meat']),
-    CreateBasicClimate('hills', ['berry', 'fish', 'meat', 'insect', 'seed']),
-    CreateBasicClimate('jungle', ['berry', 'fish', 'meat', 'insect']),
-    CreateBasicClimate('arctic', ['fish']),
+    CreateBasicClimate('tundra', {
+        berry: 100,
+        fish: 100,
+        meat: 100,
+        insect: 100,
+        seed: 100,
+    }),
+    CreateBasicClimate('desert', {
+        insect: 100,
+        meat: 100,
+        seed: 0,
+        berry: 0,
+        fish: 0,
+    }),
+    CreateBasicClimate('hills', {
+        berry: 100,
+        fish: 100,
+        meat: 100,
+        insect: 100,
+        seed: 100,
+    }),
+    CreateBasicClimate('jungle', {
+        berry: 100,
+        fish: 100,
+        meat: 100,
+        insect: 100,
+        seed: 0,
+    }),
+    CreateBasicClimate('arctic', {fish: 100, meat: 0, insect: 0, seed: 0, berry: 0}),
 ];
 
-export function removeResource(climatename_: ClimateName, food_: Food): boolean {
-    const climate = SearchClimate(climatename_, climates);
-    if (climate) {
-        const index = climate.food.indexOf(food_);
-        if (index > -1) {
-            climate.food.splice(index, 1);
-            return true;
+export function removeResource(climatename_: ClimateName, bird_: Bird): Climate{
+    let climate = SearchClimate(climatename_, climates);
+    if (climate.food !== null) {
+        let foods = bird_.prefFood;
+        let food = foods[Math.floor(Math.random() * foods.length)];
+        let amount = Math.random() * (30 - 20) + 20;
+        if (climate.food[food] >= amount) {
+            climate.food[food] -= amount;
+            return climate;
+        } else {
+            return climate;
         }
-        return false;
+    } else {
+        return climate;
     }
-    return false;
 }
 
 // TODO: Create a function that gets the smallest image width and height
