@@ -42,10 +42,16 @@ export const climates = [
         insect: 100,
         seed: 0,
     }),
-    CreateBasicClimate('arctic', {fish: 100, meat: 0, insect: 0, seed: 0, berry: 0}),
+    CreateBasicClimate('arctic', {
+        fish: 100,
+        meat: 0,
+        insect: 0,
+        seed: 0,
+        berry: 0,
+    }),
 ];
 
-export function removeResource(climatename_: ClimateName, bird_: Bird): Climate{
+export function removeResource(climatename_: ClimateName, bird_: Bird): Climate {
     let climate = SearchClimate(climatename_, climates);
     if (climate.food !== null) {
         let foods = bird_.prefFood;
@@ -53,13 +59,9 @@ export function removeResource(climatename_: ClimateName, bird_: Bird): Climate{
         let amount = Math.random() * (30 - 20) + 20;
         if (climate.food[food] >= amount) {
             climate.food[food] -= amount;
-            return climate;
-        } else {
-            return climate;
         }
-    } else {
-        return climate;
     }
+    return climate;
 }
 
 // TODO: Create a function that gets the smallest image width and height
@@ -78,7 +80,7 @@ function renderImages(app: PIXI.Application) {
     wintertree.y = 0;
     wintertree.height = 150;
     wintertree.width = 200;
-    container.addChild(wintertree);   
+    container.addChild(wintertree);
 
 
     // assign taiga to wintertree
@@ -148,7 +150,7 @@ function renderImages(app: PIXI.Application) {
     southpole.onclick = () => {
         console.log(southpole.accessibleTitle);
     }
-    
+
 
 }
 

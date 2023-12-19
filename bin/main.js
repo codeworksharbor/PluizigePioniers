@@ -23,10 +23,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.birds = void 0;
 const Bird_1 = require("./Bird");
 const Climate_1 = require("./Climate");
 const climates_1 = __importStar(require("./climates"));
-const birds = [
+exports.birds = [
     (0, Bird_1.createBasicBird)("vink", "Veel voorkomende vogel in waaronder Nederland", (0, Climate_1.SearchClimate)("hills", climates_1.climates), ['berry', 'insect']),
     (0, Bird_1.createBasicBird)("sneeuwuil", "Uil met een dikke vacht die in veel voorkomt in de sneeuw", (0, Climate_1.SearchClimate)("tundra", climates_1.climates), ['meat', 'fish']),
     (0, Bird_1.createBasicBird)("pinguin", "Vogels die veel van vis houden en die niet kunnen vliegen, maar wel goed in de kou kunnen leven", (0, Climate_1.SearchClimate)("arctic", climates_1.climates), ['fish']),
