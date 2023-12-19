@@ -1,10 +1,14 @@
 export type ClimateName = 'tundra' | 'desert' | 'hills' | 'jungle' | 'arctic';
 
-export type Food = 'berry' | 'fish' | 'meat' | 'insect' | 'seed' | null;
+export type Food = 'berry' | 'fish' | 'meat' | 'insect' | 'seed';
+
+export type DictionaryFood = {
+	[food in Food]: number;
+};
 
 export type Climate = {
 	name: ClimateName,
-	food: Array<Food>,
+	food: DictionaryFood,
 };
 
 export type Bird = {

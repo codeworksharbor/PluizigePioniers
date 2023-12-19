@@ -16,7 +16,7 @@ export const createBasicBird = (name_: string, description_: string, climate_: C
 		description: description_,
 		climate: climate_,
 		prefFood: food_,
-		image: `assets/${name_}.png` // de image wordt op basis van de naam gekozen, is makkelijker en dynamisch
+		image: `assets/birds/${name_}.png` // de image wordt op basis van de naam gekozen, is makkelijker en dynamisch
 	};
 	return newBird;
 };

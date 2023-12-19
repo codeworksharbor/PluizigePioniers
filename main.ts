@@ -2,7 +2,7 @@ import {createBasicBird} from './Bird';
 import { SearchClimate } from './Climate';
 import RenderClimates, {climates} from './climates';
 
-const birds = [
+export const birds = [
 	createBasicBird("vink", "Veel voorkomende vogel in waaronder Nederland",
 					SearchClimate("hills", climates), ['berry', 'insect']),
 	createBasicBird("sneeuwuil", "Uil met een dikke vacht die in veel voorkomt in de sneeuw",

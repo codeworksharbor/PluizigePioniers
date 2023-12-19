@@ -1,8 +1,9 @@
 import { Climate } from './Types';
 import { Food } from './Types';
 import { ClimateName } from './Types';
+import { DictionaryFood } from './Types';
 
-export const CreateBasicClimate = (name_: ClimateName, food_: Array<Food>): Climate => {
+export const CreateBasicClimate = (name_: ClimateName, food_: DictionaryFood): Climate => {
     let climate: Climate = {
         name: name_,
         food: food_,
