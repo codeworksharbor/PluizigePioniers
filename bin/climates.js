@@ -26,7 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.climates = void 0;
+exports.removeResource = exports.climates = void 0;
 const PIXI = __importStar(require("pixi.js"));
 const desert_landscape_jpg_1 = __importDefault(require("../assets/desert_landscape.jpg"));
 const green_hills_jpg_1 = __importDefault(require("../assets/green_hills.jpg"));
@@ -66,13 +66,57 @@ app.stage.eventMode = 'static';
 app.stage.hitArea = app.screen;
 app.stage.on('pointerup', dragEnd);
 app.stage.on('pointerupoutside', dragEnd);
+const Climate_2 = require("./Climate");
 exports.climates = [
-    (0, Climate_1.CreateBasicClimate)('tundra', ['berry', 'fish', 'meat', 'seed']),
-    (0, Climate_1.CreateBasicClimate)('desert', ['insect', 'meat']),
-    (0, Climate_1.CreateBasicClimate)('hills', ['berry', 'fish', 'meat', 'insect', 'seed']),
-    (0, Climate_1.CreateBasicClimate)('jungle', ['berry', 'fish', 'meat', 'insect']),
-    (0, Climate_1.CreateBasicClimate)('arctic', ['fish']),
+    (0, Climate_1.CreateBasicClimate)('tundra', {
+        berry: 100,
+        fish: 100,
+        meat: 100,
+        insect: 100,
+        seed: 100,
+    }),
+    (0, Climate_1.CreateBasicClimate)('desert', {
+        insect: 100,
+        meat: 100,
+        seed: 0,
+        berry: 0,
+        fish: 0,
+    }),
+    (0, Climate_1.CreateBasicClimate)('hills', {
+        berry: 100,
+        fish: 100,
+        meat: 100,
+        insect: 100,
+        seed: 100,
+    }),
+    (0, Climate_1.CreateBasicClimate)('jungle', {
+        berry: 100,
+        fish: 100,
+        meat: 100,
+        insect: 100,
+        seed: 0,
+    }),
+    (0, Climate_1.CreateBasicClimate)('arctic', {
+        fish: 100,
+        meat: 0,
+        insect: 0,
+        seed: 0,
+        berry: 0,
+    }),
 ];
+function removeResource(climatename_, bird_) {
+    let climate = (0, Climate_2.SearchClimate)(climatename_, exports.climates);
+    if (climate.food !== null) {
+        let foods = bird_.prefFood;
+        let food = foods[Math.floor(Math.random() * foods.length)];
+        let amount = Math.random() * (30 - 20) + 20;
+        if (climate.food[food] >= amount) {
+            climate.food[food] -= amount;
+        }
+    }
+    return climate;
+}
+exports.removeResource = removeResource;
 // TODO: Create a function that gets the smallest image width and height
 // and makes all other images the same size
 function renderImages(app) {
@@ -91,7 +135,7 @@ function renderImages(app) {
     wintertree.width = 200;
     container.addChild(wintertree);
     // assign taiga to wintertree
-    wintertree.interactive = true;
+    wintertree.eventMode = 'dynamic';
     wintertree.accessibleType = exports.climates[0].name;
     wintertree.accessibleTitle = exports.climates[0].name;
     wintertree.onclick = () => {
@@ -104,7 +148,7 @@ function renderImages(app) {
     hills.height = 150;
     hills.width = 200;
     container.addChild(hills);
-    hills.interactive = true;
+    hills.eventMode = 'dynamic';
     hills.accessibleType = exports.climates[2].name;
     hills.accessibleTitle = exports.climates[2].name;
     hills.onclick = () => {
@@ -117,7 +161,7 @@ function renderImages(app) {
     desert.height = 150;
     desert.width = 200;
     container.addChild(desert);
-    desert.interactive = true;
+    desert.eventMode = 'dynamic';
     desert.accessibleType = exports.climates[1].name;
     desert.accessibleTitle = exports.climates[1].name;
     desert.onclick = () => {
@@ -130,7 +174,7 @@ function renderImages(app) {
     rain.height = 150;
     rain.width = 200;
     container.addChild(rain);
-    rain.interactive = true;
+    rain.eventMode = 'dynamic';
     rain.accessibleType = exports.climates[3].name;
     rain.accessibleTitle = exports.climates[3].name;
     rain.onclick = () => {
@@ -143,7 +187,7 @@ function renderImages(app) {
     southpole.height = 150;
     southpole.width = 200;
     container.addChild(southpole);
-    southpole.interactive = true;
+    southpole.eventMode = 'dynamic';
     southpole.accessibleType = exports.climates[4].name;
     southpole.accessibleTitle = exports.climates[4].name;
     southpole.onclick = () => {

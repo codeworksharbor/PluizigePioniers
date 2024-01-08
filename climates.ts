@@ -7,7 +7,8 @@ import taiga from '../assets/taiga.jpg';
 import { CreateBasicClimate } from './Climate';
 import { findBird } from './Bird';
 import { birds } from './main';
-import { Bird } from './Types';
+import { Food, Bird, ClimateName, DictionaryFood, Climate } from './Types';
+import { SearchClimate } from './Climate';
 
 let dragTarget: PIXI.Sprite | null = null;
 
@@ -43,12 +44,55 @@ app.stage.on('pointerupoutside', dragEnd);
 
 
 export const climates = [
-    CreateBasicClimate('tundra', ['berry', 'fish', 'meat', 'seed']),
-    CreateBasicClimate('desert', ['insect', 'meat']),
-    CreateBasicClimate('hills', ['berry', 'fish', 'meat', 'insect', 'seed']),
-    CreateBasicClimate('jungle', ['berry', 'fish', 'meat', 'insect']),
-    CreateBasicClimate('arctic', ['fish']),
-]; 
+    CreateBasicClimate('tundra', {
+        berry: 100,
+        fish: 100,
+        meat: 100,
+        insect: 100,
+        seed: 100,
+    }),
+    CreateBasicClimate('desert', {
+        insect: 100,
+        meat: 100,
+        seed: 0,
+        berry: 0,
+        fish: 0,
+    }),
+    CreateBasicClimate('hills', {
+        berry: 100,
+        fish: 100,
+        meat: 100,
+        insect: 100,
+        seed: 100,
+    }),
+    CreateBasicClimate('jungle', {
+        berry: 100,
+        fish: 100,
+        meat: 100,
+        insect: 100,
+        seed: 0,
+    }),
+    CreateBasicClimate('arctic', {
+        fish: 100,
+        meat: 0,
+        insect: 0,
+        seed: 0,
+        berry: 0,
+    }),
+];
+
+export function removeResource(climatename_: ClimateName, bird_: Bird): Climate {
+    let climate = SearchClimate(climatename_, climates);
+    if (climate.food !== null) {
+        let foods = bird_.prefFood;
+        let food = foods[Math.floor(Math.random() * foods.length)];
+        let amount = Math.random() * (30 - 20) + 20;
+        if (climate.food[food] >= amount) {
+            climate.food[food] -= amount;
+        }
+    }
+    return climate;
+}
 
 
 // TODO: Create a function that gets the smallest image width and height
@@ -68,11 +112,11 @@ function renderImages(app: PIXI.Application) {
     wintertree.y = 0;
     wintertree.height = 150;
     wintertree.width = 200;
-    container.addChild(wintertree);   
+    container.addChild(wintertree);
 
 
     // assign taiga to wintertree
-    wintertree.interactive = true;
+    wintertree.eventMode = 'dynamic';
     wintertree.accessibleType = climates[0].name;
     wintertree.accessibleTitle = climates[0].name;
     wintertree.onclick = () => {
@@ -87,7 +131,7 @@ function renderImages(app: PIXI.Application) {
     hills.width = 200;
     container.addChild(hills);
 
-    hills.interactive = true;
+    hills.eventMode = 'dynamic';
     hills.accessibleType = climates[2].name;
     hills.accessibleTitle = climates[2].name;
     hills.onclick = () => {
@@ -102,7 +146,7 @@ function renderImages(app: PIXI.Application) {
     desert.width = 200;
     container.addChild(desert);
 
-    desert.interactive = true;
+    desert.eventMode = 'dynamic';
     desert.accessibleType = climates[1].name;
     desert.accessibleTitle = climates[1].name;
     desert.onclick = () => {
@@ -117,7 +161,7 @@ function renderImages(app: PIXI.Application) {
     rain.width = 200;
     container.addChild(rain);
 
-    rain.interactive = true;
+    rain.eventMode = 'dynamic';
     rain.accessibleType = climates[3].name;
     rain.accessibleTitle = climates[3].name;
     rain.onclick = () => {
@@ -132,7 +176,7 @@ function renderImages(app: PIXI.Application) {
     southpole.width = 200;
     container.addChild(southpole);
 
-    southpole.interactive = true;
+    southpole.eventMode = 'dynamic';
     southpole.accessibleType = climates[4].name;
     southpole.accessibleTitle = climates[4].name;
     southpole.onclick = () => {
