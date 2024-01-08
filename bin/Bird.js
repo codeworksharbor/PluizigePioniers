@@ -41,14 +41,13 @@ exports.findBird = findBird;
  */
 const getNewBird = (climate_, birds, bird) => {
     let newBird = bird;
-    if (bird.name === 'Vink') {
-        let foodTypes = climate_.food;
-        // zoekt het meest voorkomende eten in het klimaat
-        let food = Object.keys(foodTypes).reduce((a, b) => foodTypes[a] > foodTypes[b] ? a : b);
-        // zoekt alle vogels in het klimaat die het meest voorkomende eten eten
-        let birdsInClimate = birds.filter((bird) => bird.climate === climate_ && bird.prefFood.includes(food));
-        newBird = birdsInClimate[Math.floor(Math.random() * birdsInClimate.length)];
-    }
+    let foodTypes = climate_.food;
+    // zoekt het meest voorkomende eten in het klimaat
+    let food = Object.keys(foodTypes).reduce((a, b) => foodTypes[a] > foodTypes[b] ? a : b);
+    console.log("ChosenFood: ", food);
+    // zoekt alle vogels in het klimaat die het meest voorkomende eten eten
+    let birdsInClimate = birds.filter((bird) => bird.climate === climate_ && bird.prefFood.includes(food));
+    newBird = birdsInClimate[Math.floor(Math.random() * birdsInClimate.length)];
     return newBird;
 };
 exports.getNewBird = getNewBird;

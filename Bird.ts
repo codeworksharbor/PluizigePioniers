@@ -41,13 +41,12 @@ export const findBird = (name_: string, birds: Array<Bird>): Bird => birds.find(
 export const getNewBird = (climate_: Climate, birds: Array<Bird>, bird: Bird): Bird => {
 
 	let newBird: Bird = bird;
-	if (bird.name === 'Vink') {
-		let foodTypes = climate_.food;
-		// zoekt het meest voorkomende eten in het klimaat
-		let food = Object.keys(foodTypes).reduce((a, b) => foodTypes[a] > foodTypes[b] ? a : b);
-		// zoekt alle vogels in het klimaat die het meest voorkomende eten eten
-		let birdsInClimate = birds.filter((bird: Bird): boolean => bird.climate === climate_ && bird.prefFood.includes(food as Food));
-		newBird = birdsInClimate[Math.floor(Math.random() * birdsInClimate.length)];
-	}
+	let foodTypes = climate_.food;
+	// zoekt het meest voorkomende eten in het klimaat
+	let food = Object.keys(foodTypes).reduce((a, b) => foodTypes[a] > foodTypes[b] ? a : b);
+	console.log("ChosenFood: ", food);
+	// zoekt alle vogels in het klimaat die het meest voorkomende eten eten
+	let birdsInClimate = birds.filter((bird: Bird): boolean => bird.climate === climate_ && bird.prefFood.includes(food as Food));
+	newBird = birdsInClimate[Math.floor(Math.random() * birdsInClimate.length)]; 
 	return newBird;
 };
