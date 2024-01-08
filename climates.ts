@@ -30,7 +30,7 @@ const sleep = <T>(delay: number): Promise<T> => {
 const dragMove = (evt: any) => {
 	if (dragTarget) {
 		const globalMousePosition = evt.data.global;
-		dragTarget.position.y = globalMousePosition.y - 5;
+		dragTarget.position.y = globalMousePosition.y - 64;
 	}
 };
 
