@@ -36,6 +36,36 @@ const taiga_jpg_1 = __importDefault(require("../assets/taiga.jpg"));
 const Climate_1 = require("./Climate");
 const Bird_1 = require("./Bird");
 const main_1 = require("./main");
+let dragTarget = null;
+const dragMove = (evt) => {
+    console.log(dragTarget);
+    if (dragTarget) {
+        const globalMousePosition = evt.data.global;
+        dragTarget.position.y = globalMousePosition.y - 5;
+    }
+};
+const dragEnd = () => {
+    if (dragTarget) {
+        const spriteEnded = exports.climates.find((climateSprite) => {
+            climateSprite.containsPoint(app.renderer.plugins.interaction.mouse.global);
+        });
+        app.stage.off('pointermove', dragMove);
+        dragTarget.alpha = 1;
+        dragTarget = null;
+    }
+};
+const dragStart = function () {
+    if (!this)
+        return;
+    this.alpha = 0.5;
+    dragTarget = this;
+    app.stage.on('pointermove', dragMove);
+};
+var app = new PIXI.Application({ background: 'white', resizeTo: window });
+app.stage.eventMode = 'static';
+app.stage.hitArea = app.screen;
+app.stage.on('pointerup', dragEnd);
+app.stage.on('pointerupoutside', dragEnd);
 exports.climates = [
     (0, Climate_1.CreateBasicClimate)('tundra', ['berry', 'fish', 'meat', 'seed']),
     (0, Climate_1.CreateBasicClimate)('desert', ['insect', 'meat']),
@@ -129,18 +159,18 @@ function renderImages(app) {
     birdBar.zIndex = -1;
     container.addChild(birdBar);
     const firstBirdSprite = PIXI.Sprite.from(firstBird.image);
-    firstBirdSprite.eventMode = "static";
-    firstBirdSprite.cursor = "pointer";
+    firstBirdSprite.interactive = true;
+    firstBirdSprite.cursor = 'pointer';
     firstBirdSprite.anchor.set(0.5);
     firstBirdSprite.x = 0;
     firstBirdSprite.y = southpole.y + 128;
     firstBirdSprite.height = 128;
     firstBirdSprite.width = 128;
     firstBirdSprite.zIndex = 10000;
+    firstBirdSprite.on("pointerdown", dragStart, firstBirdSprite);
     container.addChild(firstBirdSprite);
 }
 function RenderClimates() {
-    const app = new PIXI.Application({ background: 'white', resizeTo: window });
     document.body.appendChild(app.view);
     renderImages(app);
 }

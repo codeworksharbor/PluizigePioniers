@@ -9,6 +9,39 @@ import { findBird } from './Bird';
 import { birds } from './main';
 import { Bird } from './Types';
 
+let dragTarget: PIXI.Sprite | null = null;
+
+// sorry sorry sorry voor any maar het kon gewoon niet anders ik wilde mijn haren uittrekken
+const dragMove = (evt: any) => {
+	console.log(dragTarget);
+	if (dragTarget) {
+		const globalMousePosition = evt.data.global;
+		dragTarget.position.y = globalMousePosition.y - 5;
+	}
+};
+
+const dragEnd = () => {
+	if (dragTarget) {
+		app.stage.off('pointermove', dragMove);
+		dragTarget.alpha = 1;
+		dragTarget = null;
+	}
+};
+
+const dragStart = function(this: PIXI.Sprite) {
+	if (!this) return;
+	this.alpha = 0.5;
+	dragTarget = this;
+	app.stage.on('pointermove', dragMove);
+};
+
+var app = new PIXI.Application<HTMLCanvasElement>({ background: 'white', resizeTo: window });
+app.stage.eventMode = 'static';
+app.stage.hitArea = app.screen;
+app.stage.on('pointerup', dragEnd);
+app.stage.on('pointerupoutside', dragEnd);
+
+
 export const climates = [
     CreateBasicClimate('tundra', ['berry', 'fish', 'meat', 'seed']),
     CreateBasicClimate('desert', ['insect', 'meat']),
@@ -16,6 +49,7 @@ export const climates = [
     CreateBasicClimate('jungle', ['berry', 'fish', 'meat', 'insect']),
     CreateBasicClimate('arctic', ['fish']),
 ]; 
+
 
 // TODO: Create a function that gets the smallest image width and height
 // and makes all other images the same size
@@ -116,22 +150,21 @@ function renderImages(app: PIXI.Application) {
 	container.addChild(birdBar);
 
 	const firstBirdSprite = PIXI.Sprite.from(firstBird.image);
-	firstBirdSprite.eventMode = "static";
-	firstBirdSprite.cursor = "pointer";
+	firstBirdSprite.interactive = true;
+	firstBirdSprite.cursor = 'pointer';
     firstBirdSprite.anchor.set(0.5);
     firstBirdSprite.x = 0;
     firstBirdSprite.y = southpole.y + 128;
     firstBirdSprite.height = 128;
     firstBirdSprite.width = 128;
 	firstBirdSprite.zIndex = 10000;
+	firstBirdSprite.on("pointerdown", dragStart, firstBirdSprite);
 	container.addChild(firstBirdSprite);
 }
 
 
 function RenderClimates() {
-    const app = new PIXI.Application<HTMLCanvasElement>({ background: 'white', resizeTo: window });
     document.body.appendChild(app.view);
-
     renderImages(app);
 }
 
