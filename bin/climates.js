@@ -37,6 +37,54 @@ const Climate_1 = require("./Climate");
 const Bird_1 = require("./Bird");
 const main_1 = require("./main");
 const Climate_2 = require("./Climate");
+let dragTarget = null;
+let originalBirdPos = 0;
+/**
+ * XXX: moet eigenlijk in een global dingetje maar boeie
+ * Sleep functie zoals die in vele talen zit, slaap voor paar ms.
+ * Moet in Async function
+ *
+ * @param {number} delay - hoeveel ms het moet wachten
+ *
+ * @returns {Promise} - een promise met een gelijke resolve
+ */
+const sleep = (delay) => {
+    return new Promise(resolve => setTimeout(resolve, delay));
+};
+// sorry sorry sorry voor any maar het kon gewoon niet anders ik wilde mijn haren uittrekken
+const dragMove = (evt) => {
+    if (dragTarget) {
+        const globalMousePosition = evt.data.global;
+        dragTarget.position.y = globalMousePosition.y - 64;
+    }
+};
+const dragEnd = async () => {
+    if (dragTarget) {
+        // zoek het klimaat waar de vogel is ingeplaatst
+        const climatename = (0, Climate_2.getClimateOnY)(dragTarget.position.y + 64);
+        // zoek het id van dat klimaat om het te veranderen qua resources
+        const idx = exports.climates.indexOf((0, Climate_2.SearchClimate)(climatename, exports.climates));
+        const newClimate = removeResource(climatename, (0, Bird_1.findBird)("vink", main_1.birds));
+        exports.climates[idx] = newClimate; // verwissel de originele met een kopie
+        app.stage.off('pointermove', dragMove);
+        await sleep(500);
+        dragTarget.position.set(dragTarget.position.x, originalBirdPos);
+        dragTarget.alpha = 1;
+        dragTarget = null;
+    }
+};
+const dragStart = function () {
+    if (!this)
+        return;
+    this.alpha = 0.5;
+    dragTarget = this;
+    app.stage.on('pointermove', dragMove);
+};
+var app = new PIXI.Application({ background: 'white', resizeTo: window });
+app.stage.eventMode = 'static';
+app.stage.hitArea = app.screen;
+app.stage.on('pointerup', dragEnd);
+app.stage.on('pointerupoutside', dragEnd);
 exports.climates = [
     (0, Climate_1.CreateBasicClimate)('tundra', {
         berry: 100,
@@ -87,8 +135,6 @@ function removeResource(climatename_, bird_) {
     return climate;
 }
 exports.removeResource = removeResource;
-// TODO: Create a function that gets the smallest image width and height
-// and makes all other images the same size
 function renderImages(app) {
     const firstBird = (0, Bird_1.findBird)("vink", main_1.birds);
     const container = new PIXI.Container();
@@ -173,18 +219,19 @@ function renderImages(app) {
     birdBar.zIndex = -1;
     container.addChild(birdBar);
     const firstBirdSprite = PIXI.Sprite.from(firstBird.image);
-    firstBirdSprite.eventMode = "static";
-    firstBirdSprite.cursor = "pointer";
+    firstBirdSprite.interactive = true;
+    firstBirdSprite.cursor = 'pointer';
     firstBirdSprite.anchor.set(0.5);
     firstBirdSprite.x = 0;
     firstBirdSprite.y = southpole.y + 128;
+    originalBirdPos = southpole.y + 128;
     firstBirdSprite.height = 128;
     firstBirdSprite.width = 128;
     firstBirdSprite.zIndex = 10000;
+    firstBirdSprite.on("pointerdown", dragStart, firstBirdSprite);
     container.addChild(firstBirdSprite);
 }
 function RenderClimates() {
-    const app = new PIXI.Application({ background: 'white', resizeTo: window });
     document.body.appendChild(app.view);
     renderImages(app);
 }
