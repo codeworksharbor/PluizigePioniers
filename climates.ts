@@ -5,7 +5,7 @@ import rainforest from '../assets/rainforest.jpg';
 import winter from '../assets/winter.jpg';
 import taiga from '../assets/taiga.jpg';
 import { CreateBasicClimate } from './Climate';
-import { findBird } from './Bird';
+import { findBird, getNewBird } from './Bird';
 import { birds } from './main';
 import { Bird, ClimateName, Climate } from './Types';
 import { SearchClimate, getClimateOnY } from './Climate';
@@ -41,6 +41,11 @@ const dragEnd = async () => {
 		// zoek het id van dat klimaat om het te veranderen qua resources
 		const idx = climates.indexOf(SearchClimate(climatename, climates));
 		const newClimate = removeResource(climatename, findBird("vink", birds));
+		console.log(newClimate.food);
+		const newBird = getNewBird(newClimate, birds, findBird("vink", birds));
+		dragTarget.texture = PIXI.Texture.from(newBird.image);
+		dragTarget.accessibleTitle = newBird.name;
+
 		climates[idx] = newClimate; // verwissel de originele met een kopie
 		app.stage.off('pointermove', dragMove);
 		await sleep(500);
@@ -212,7 +217,7 @@ function renderImages(app: PIXI.Application) {
 	container.addChild(birdBar);
 
 	const firstBirdSprite = PIXI.Sprite.from(firstBird.image);
-	firstBirdSprite.interactive = true;
+	firstBirdSprite.eventMode = 'dynamic';
 	firstBirdSprite.cursor = 'pointer';
     firstBirdSprite.anchor.set(0.5);
     firstBirdSprite.x = 0;

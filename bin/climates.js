@@ -65,6 +65,10 @@ const dragEnd = async () => {
         // zoek het id van dat klimaat om het te veranderen qua resources
         const idx = exports.climates.indexOf((0, Climate_2.SearchClimate)(climatename, exports.climates));
         const newClimate = removeResource(climatename, (0, Bird_1.findBird)("vink", main_1.birds));
+        console.log(newClimate.food);
+        const newBird = (0, Bird_1.getNewBird)(newClimate, main_1.birds, (0, Bird_1.findBird)("vink", main_1.birds));
+        dragTarget.texture = PIXI.Texture.from(newBird.image);
+        dragTarget.accessibleTitle = newBird.name;
         exports.climates[idx] = newClimate; // verwissel de originele met een kopie
         app.stage.off('pointermove', dragMove);
         await sleep(500);
@@ -219,7 +223,7 @@ function renderImages(app) {
     birdBar.zIndex = -1;
     container.addChild(birdBar);
     const firstBirdSprite = PIXI.Sprite.from(firstBird.image);
-    firstBirdSprite.interactive = true;
+    firstBirdSprite.eventMode = 'dynamic';
     firstBirdSprite.cursor = 'pointer';
     firstBirdSprite.anchor.set(0.5);
     firstBirdSprite.x = 0;
