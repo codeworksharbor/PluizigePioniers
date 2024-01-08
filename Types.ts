@@ -3,7 +3,7 @@ export type ClimateName = 'tundra' | 'desert' | 'hills' | 'jungle' | 'arctic';
 export type Food = 'berry' | 'fish' | 'meat' | 'insect' | 'seed';
 
 export type DictionaryFood = {
-	[food in Food]: number;
+	[key: string]: number;
 };
 
 export type Climate = {
