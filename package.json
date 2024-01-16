@@ -12,8 +12,8 @@
     "build": "webpack --mode production"
   },
   "include": [
-	  "src/**/*.ts",
-	  "src/**/*.tsx",
-	  "assets/**/*.jpg"
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "assets/**/*.jpg"
   ]
 }

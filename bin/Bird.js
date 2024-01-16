@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findBird = exports.createBasicBird = void 0;
+exports.getNewBird = exports.findBird = exports.createBasicBird = void 0;
 /**
  * Functie om een vogel te maken, dit is met de type Bird uit Types.ts
  *
@@ -32,4 +32,23 @@ exports.createBasicBird = createBasicBird;
  */
 const findBird = (name_, birds) => birds.find((bird) => bird.name === name_);
 exports.findBird = findBird;
+/**
+ * Functie om een vogel te returnen op basis van gegeven klimaat, eten en vogels
+ *
+ * @param {Climate} climate_ - de klimaat waar de huidige vogel door de gebruiker naartoe is getrokken
+ * @param {Array<Bird>} birds - de vogels waar je in wilt Zoeken naar vogels in dat klimaat
+ * @param {Bird} bird - de huidige vogel die de gebruiker heeft getrokken
+ */
+const getNewBird = (climate_, birds, bird) => {
+    let newBird = bird;
+    let foodTypes = climate_.food;
+    // zoekt het meest voorkomende eten in het klimaat
+    let food = Object.keys(foodTypes).reduce((a, b) => foodTypes[a] > foodTypes[b] ? a : b);
+    console.log("ChosenFood: ", food);
+    // zoekt alle vogels in het klimaat die het meest voorkomende eten eten
+    let birdsInClimate = birds.filter((bird) => bird.climate === climate_ && bird.prefFood.includes(food));
+    newBird = birdsInClimate[Math.floor(Math.random() * birdsInClimate.length)];
+    return newBird;
+};
+exports.getNewBird = getNewBird;
 //# sourceMappingURL=Bird.js.map
